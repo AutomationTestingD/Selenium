@@ -21,12 +21,8 @@
     <dependency>
   <groupId>junit</groupId>
   <artifactId>junit</artifactId>
-<<<<<<< HEAD
   <version>4.11</version>         
-=======
-  <version>4.11</version>
-   
->>>>>>> 2fff63557184221f3262858aea234e5f1450101c
+
 </dependency>
   </dependencies>
 
