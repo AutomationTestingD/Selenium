@@ -1,0 +1,47 @@
+package TestPackage;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+import MainPackage.SignInMyWipro;
+
+public class CreateMedicalClaim {
+	
+	@Test
+	
+	public void medicalClaim() throws Exception {
+	SignInMyWipro signInWipro = new SignInMyWipro();
+	WebDriver driver = signInWipro.signIn();
+    driver.findElement(By.xpath("/html/body/app-root/div/app-landing/div[1]/div/div/app-header/header/div[2]/div[1]/div")).click();
+    driver.findElement(By.xpath("//*[@id=\"finAnAppVal\"]")).sendKeys("MY MEDICAL CLAIM");
+    driver.findElement(By.xpath("//*[@id=\"mat-dialog-0\"]/popupfindapp/div/div/div/div[1]/div[1]/typeahead-container/ul/li[2]/a")).click();
+    Thread.sleep(10000);
+    driver.switchTo().frame(driver.findElement(By.xpath("/html/body/app-root/div/app-my-app/iframe")));
+    driver.findElement(By.id("liMedilaim")).click();
+    Thread.sleep(10000);
+
+    List<WebElement> sel = driver.findElements(By.id("ddMonthSelect"));
+    WebElement a = sel.get(0);
+    ((JavascriptExecutor)driver).executeScript("arguments[0].click()",a);
+    driver.findElement(By.xpath("//*[@id=\"ddMonthSelect\"]/option[5]")).click();
+    
+    Select patient =new Select(driver.findElement(By.id("ddlFamilyMemberDOM0")));
+    patient.selectByIndex(1);
+
+    Select illness =new Select(driver.findElement(By.xpath("//*[@id=\"ddlIllTypeDOM0\"]")));
+    illness.selectByIndex(4);
+
+    driver.findElement(By.xpath("//*[@id=\"txtAmntDOM0\"]")).sendKeys("500");
+        
+    
+    Thread.sleep(10000);
+
+    driver.findElement(By.id("IDuploadINpuFile")).sendKeys("C:\\Users\\Sandy\\Desktop\\Capture2.jpg");
+
+    driver.findElement(By.id("IDuploadINpuFileReceipt")).sendKeys("C:\\Users\\Sandy\\Desktop\\Capture2.jpg");
+    driver.findElement(By.xpath("//*[@id=\"btnSaveMAS\"]/button")).click();
+
+}}
