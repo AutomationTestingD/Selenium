@@ -1,0 +1,23 @@
+package TestPackage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
+import MainPackage.SignInMyWipro;
+
+public class MyLearning {
+	
+	@Test
+	public void projectSkilCheck() throws Exception {
+	SignInMyWipro signInWipro = new SignInMyWipro();
+	WebDriver driver = signInWipro.signIn();
+    driver.findElement(By.xpath("/html/body/app-root/div/app-landing/div[1]/div/div/app-header/header/div[2]/div[1]/div")).click();
+    driver.findElement(By.xpath("//*[@id=\"finAnAppVal\"]")).sendKeys("MYLEARNING");
+    driver.findElement(By.xpath("//*[@id=\"mat-dialog-0\"]/popupfindapp/div/div/div/div[1]/div[1]/typeahead-container/ul/li/a")).click();
+    Thread.sleep(25000);
+    driver.switchTo().frame(driver.findElement(By.xpath("/html/body/app-root/div/app-my-app/iframe")));
+    System.out.print(driver.findElement(By.xpath("/html/body/app-root/div/ng-component/div/ng-component/div[3]/div/div[1]/div/div/div/div[5]/ul/li[1]/div[1]/div[1]/p[1]")).getText()+" is ");
+   System.out.println(driver.findElement(By.xpath("/html/body/app-root/div/ng-component/div/ng-component/div[3]/div/div[1]/div/div/div/div[5]/ul/li[1]/div[1]/div[1]/p[2]/b")).getText()); 
+    
+    
+}
+}
